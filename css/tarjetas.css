@@ -1,0 +1,160 @@
+/* Tarjetas de colaboradores  */
+:root{
+  --card-bg: #ffffff;
+  --ink: #28323C;
+  --muted: #6B7A8C;
+  --ring: #D7E2F0;          /* borde sutil */
+  --grad-a: #EAF6FF;        /* pasteles */
+  --grad-b: #FFEFF5;
+  --grad-c: #F4F1FF;
+  --btn: #5B8DEF;           /* botón */
+  --btn-ink: #ffffff;
+  --shadow: 0 10px 24px rgba(17, 23, 41, 0.08);
+  --shadow-soft: 0 10px 24px rgba(17, 23, 41, 0.08); /* NUEVO */
+}
+
+#user-stories h2{
+  text-align: center;
+  margin: 28px 0 18px 0;
+  color: var(--ink);
+  letter-spacing: .3px;
+}
+
+/* === Layout final: 3 arriba / 2 a la derecha abajo === */
+.team-grid{
+  width: min(1100px, 92%);
+  margin: 0 auto 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 270px);
+  gap: 22px;
+  justify-content: center;    /* centra el conjunto */
+  grid-auto-flow: row;        /* evita que otra tarjeta rellene el hueco de la col 1 */
+}
+
+/* Mueve explícitamente la fila 2 a columnas 2 y 3 en escritorio */
+@media (min-width: 1051px){
+  .team-card:nth-child(4){ grid-column: 2; }  /* fila 2, col 2 */
+  .team-card:nth-child(5){ grid-column: 3; }  /* fila 2, col 3 */
+}
+
+/* Responsivo: 2 columnas */
+@media (max-width: 1050px){
+  .team-grid{ grid-template-columns: repeat(2, 320px); }
+  .team-card:nth-child(4),
+  .team-card:nth-child(5){ grid-column: auto; } /* vuelve a flujo normal */
+}
+
+/* Responsivo: 1 columna */
+@media (max-width: 700px){
+  .team-grid{ grid-template-columns: minmax(280px, 1fr); }
+}
+/* Empujar las 2 tarjetas de abajo un poco a la IZQUIERDA (solo desktop) */
+@media (min-width: 1051px){
+  :root{ --row2-nudge: -125px; }  /* prueba -6px, -8px, -16px, etc. */
+
+  .team-card:nth-child(4),
+  .team-card:nth-child(5){
+    transform: translateX(var(--row2-nudge));
+  }
+  /* mantiene el efecto hover combinando el desplazamiento */
+  .team-card:nth-child(4):hover,
+  .team-card:nth-child(5):hover{
+    transform: translateX(var(--row2-nudge)) translateY(-4px);
+  }
+}
+.team-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(17,23,41,.12);
+  border-color: #c8d7ee;
+}
+
+/* Imagen */
+.card-media{
+  aspect-ratio: 16/9;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.card-media img{
+  width: 140px;   /* ancho máximo del avatar */
+  height: auto;  /* mantiene proporción */
+  object-fit: contain;
+}
+
+/* Encabezado */
+.card-header{
+  display: block;        
+  text-align: center;    
+  padding: 14px 16px 0 16px;
+
+  /* 👇 Ajusta estos para mover todo el bloque del encabezado */
+  margin-left: -15px;   /* prueba con valores positivos/negativos */
+  margin-right: 0px;
+  transform: translateX(0px); /* mueve horizontalmente */
+}
+
+.card-header h3{
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0 auto;        
+  font-weight: 700;
+  text-align: center;    
+
+  /* 👇 Ajusta estos para mover SOLO el nombre */
+  margin-left: 0px;
+  margin-right: 0px;
+  transform: translateX(0px);
+}
+
+/* Texto */
+.card-text{
+  padding: 8px 16px 0 16px;
+  color: var(--muted);
+  line-height: 1.5;
+  min-height: 56px;
+  text-align: center;    
+
+  /* Ajusta para mover la descripción */
+  margin-left: 0px;
+  margin-right: 0px;
+  transform: translateX(0px);
+}
+
+/* Botón */
+.card-btn{
+  display: inline-block;   
+  margin: 14px auto 16px;  
+  padding: 8px 18px;       
+  border-radius: 12px;
+  background: var(--btn);
+  color: var(--btn-ink);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .2px;
+  transition: filter .15s ease, transform .15s ease;
+
+  /* Ajusta para mover el botón */
+  margin-left: 95px;
+  margin-right: 0px;
+  transform: translateX(0px);
+}
+.card-btn:hover{ filter: brightness(1.05); transform: translateX(0px) translateY(-1px); }
+.card-btn:active{ transform: translateX(0px) translateY(0); }
+
+
+/* Base de tarjeta: marco visible con sombra suave */
+.team-card{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ring);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #FAFBFF, #F8FAFF); /* fallback neutro */
+  box-shadow: 0 0 0 1px rgba(17,23,41,.03), var(--shadow-soft);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  will-change: transform, box-shadow; /* NUEVO */
+}
+
+
+

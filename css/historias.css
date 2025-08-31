@@ -1,0 +1,68 @@
+/* ===== Historias: mismas tarjetas/colores  */
+
+:root{
+  --card-border: #E3E9F2;
+  --card-ink: #2F3A45;
+  --muted: #5E6B77;
+  --shadow: 0 8px 22px rgba(17, 23, 41, .08);
+  --divider: #E6EDF5;
+  --accent: #2F6CE5; /* azul para 'Como/Quiero/Para' */
+  --highlight: #ffffff; /* fondo azul suave de la tarjeta destacada */
+}
+
+/* contenedor: 3 columnas y la última fila centrada (quedan 2 al medio) */
+.stories-grid{
+  width: min(1100px, 92%);
+  margin: 18px auto 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 320px);
+  gap: 26px;
+  justify-content: center;
+}
+
+/* responsivo */
+@media (max-width: 1050px){
+  .stories-grid{ grid-template-columns: repeat(2, 320px); }
+}
+@media (max-width: 700px){
+  .stories-grid{ grid-template-columns: minmax(280px, 1fr); }
+}
+
+/* tarjeta base */
+.story-card{
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* encabezado con línea como en el ejemplo */
+.story-header{
+  font-weight: 700;
+  color: var(--card-ink);
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--divider);
+}
+
+/* cuerpo de texto */
+.story-body{ padding: 12px 16px 16px; }
+.story-body p{
+  color: var(--muted);
+  margin: 8px 0;
+  line-height: 1.5;
+}
+.story-body .kw{
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* tarjeta destacada igual al ejemplo (azul suave) */
+.story-card.is-highlight{
+  background: var(--highlight);
+}
+.story-card.is-highlight .story-header{
+  border-bottom-color: rgba(255,255,255,.55);
+}
+.story-card.is-highlight .story-body p{ color: #2b3b47; }
+.story-card.is-highlight .kw{ color: #1E63D4; }

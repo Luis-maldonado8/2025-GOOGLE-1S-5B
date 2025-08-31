@@ -1,0 +1,57 @@
+/* =========================
+   Tabs base
+   ========================= */
+
+.tab-section.active { 
+  display: block; 
+  animation: fadeIn 160ms ease-out;
+}
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@media (prefers-reduced-motion: reduce) {
+  .tab-section.active { animation: none !important; }
+}
+
+/* Quitar contornos/bordes al enfocar o al llegar por #hash */
+.tab-section[role="tabpanel"]:focus,
+.tab-section[role="tabpanel"]:focus-visible,
+.tab-section:focus,
+.tab-section:focus-visible,
+:target {
+  outline: none !important;
+  box-shadow: none !important;   /* por si algún UA usa sombra */
+  border-color: transparent !important; /* por si algún UA simula con borde */
+}
+
+/* Estado activo del link en el nav */
+header nav a.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Foco accesible (solo en los enlaces del nav) */
+header nav a[role="tab"]:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* =========================
+   Estilos exclusivos /labels
+   ========================= */
+.labels-page .content-section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Si existe user-stories en alguna página de labels */
+.labels-page #user-stories { padding-top: 6px; }
+.labels-page #user-stories h2 { margin: 0 0 14px; line-height: 1.2; }
+
+/* Evitar “flash” oscuro mientras cargan imágenes */
+.labels-page .card-media,
+.labels-page .card-design-interface img {
+  background: #f3f4f6;
+}
+
+/* Espaciado global de títulos */
+.tab-section h2 { margin-top: 0; }
+
